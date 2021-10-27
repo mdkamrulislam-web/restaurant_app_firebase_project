@@ -13,7 +13,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Setting Screen'),
+        centerTitle: true,
       ),
+      body: Text('s'),
     );
   }
 }

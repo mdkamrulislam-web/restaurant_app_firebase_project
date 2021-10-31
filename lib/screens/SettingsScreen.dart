@@ -15,7 +15,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
         title: Text('Setting Screen'),
         centerTitle: true,
       ),
-      body: Text('s'),
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        color: Colors.amber,
+        child: Center(
+          child: Text(
+            'UNDER CONSTRUCTION!',
+          ),
+        ),
+      ),
     );
   }
 }

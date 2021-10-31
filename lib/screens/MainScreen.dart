@@ -1,4 +1,7 @@
+import 'package:firebase_project/models/datamodels/restaruntModel.dart';
 import 'package:flutter/material.dart';
+
+import '../constants.dart';
 
 class main_screen extends StatefulWidget {
   const main_screen({Key? key}) : super(key: key);
@@ -36,10 +39,10 @@ class _main_screenState extends State<main_screen> {
                       child: Icon(
                         Icons.menu,
                       ),
-                      height: size.height / 14,
-                      width: size.height / 14,
+                      height: size.height / 20,
+                      width: size.height / 20,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(10),
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
@@ -53,12 +56,12 @@ class _main_screenState extends State<main_screen> {
                     Container(
                       child: Image.asset(
                         "assets/images/youth.png",
-                        scale: size.height / 35,
+                        scale: size.height / 50,
                       ),
-                      height: size.height / 14,
-                      width: size.height / 14,
+                      height: size.height / 20,
+                      width: size.height / 20,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
+                        borderRadius: BorderRadius.circular(10),
                         color: Color(0xfff7c748),
                         // Colors.white,
                         boxShadow: [
@@ -78,9 +81,10 @@ class _main_screenState extends State<main_screen> {
                 Text(
                   "Food Delivery",
                   style: textTheme.headline5!.apply(
-                    color: Colors.black,
-                    fontWeightDelta: 3,
-                  ),
+                      color: Colors.black,
+                      fontWeightDelta: 3,
+                      letterSpacingDelta: 0.0,
+                      letterSpacingFactor: 1.0),
                 ),
                 SizedBox(height: size.height / 30),
                 Row(
@@ -120,8 +124,8 @@ class _main_screenState extends State<main_screen> {
                     Flexible(
                       flex: 1,
                       child: Container(
-                        height: size.height / 12.5,
-                        width: size.height / 12.5,
+                        height: size.height / 15,
+                        width: size.height / 15,
                         decoration: BoxDecoration(
                           color: Theme.of(context).primaryColor,
                           borderRadius: BorderRadius.circular(15),
@@ -151,7 +155,8 @@ class _main_screenState extends State<main_screen> {
                       "Best Restaurants",
                       style: TextStyle(
                           fontSize: textTheme.headline6!.fontSize,
-                          fontWeight: FontWeight.w700),
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 1),
                     ),
                     TextButton(
                       onPressed: () {
@@ -163,6 +168,8 @@ class _main_screenState extends State<main_screen> {
                         "View all",
                         style: TextStyle(
                           color: Color(0xfffe7156),
+                          fontWeight: FontWeight.w700,
+                          fontSize: 16,
                         ),
                       ),
                     ),
@@ -170,40 +177,17 @@ class _main_screenState extends State<main_screen> {
                 ),
                 SizedBox(height: size.height / 70),
                 Container(
-                  height: size.height / 2.75,
-                  width: size.height / 4.5,
-                  decoration: BoxDecoration(
-                    // color: Colors.red,
-                    borderRadius: BorderRadius.circular(24),
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.transparent,
-                        Colors.black,
-                      ],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                    ),
-                    // image: DecorationImage(
-                    //   fit: BoxFit.cover,
-                    //   image: NetworkImage(
-                    //       "https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=422&q=80"),
-                    // ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "4.5",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  height: size.height / 2.5,
+                  // width: size.height / 3.75,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: restaurantModels.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return RestaurantCard(
+                          size: size,
+                          restaurantModel: restaurantModels[index],
+                        );
+                      }),
                 ),
               ],
             ),
@@ -212,6 +196,214 @@ class _main_screenState extends State<main_screen> {
       ),
     );
   }
+}
+
+class RestaurantCard extends StatelessWidget {
+  final RestaurantModel restaurantModel;
+
+  const RestaurantCard({
+    Key? key,
+    required this.size,
+    required this.restaurantModel,
+  }) : super(key: key);
+
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(right: 16.0),
+      child: Container(
+        height: size.height / 2.5,
+        width: size.height / 3.75,
+        decoration: BoxDecoration(
+          // color: Colors.red,
+          borderRadius: BorderRadius.circular(24),
+        ),
+        child: Stack(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(24.0),
+              child: Image(
+                fit: BoxFit.cover,
+                image: AssetImage(restaurantModel.image),
+              ),
+            ),
+            Container(
+              height: size.height / 2.5,
+              width: size.height / 3.75,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(24),
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.transparent,
+                    Colors.transparent,
+                    Colors.transparent,
+                    Colors.black,
+                    Colors.black,
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+              ),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                          color: Colors.white.withOpacity(.3),
+                        ),
+                        height: size.height / 20,
+                        width: size.height / 8,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              restaurantModel.rating.toString(),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 14),
+                            ),
+                            SizedBox(
+                              width: size.width / 70,
+                            ),
+                            Icon(
+                              Icons.star,
+                              size: 18,
+                              color: Color(0xffe3c579),
+                            ),
+                            Text(
+                              "(50+)",
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      CircleAvatar(
+                        radius: size.width / 24,
+                        backgroundColor: Colors.white,
+                        child: Icon(
+                          Icons.favorite,
+                          color: kAppthemecolor,
+                          size: size.width / 20,
+                        ),
+                      )
+                    ],
+                  ),
+                  Spacer(),
+                  Row(
+                    children: [
+                      Container(
+                        height: size.height / 30,
+                        width: size.height / 12,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.white.withOpacity(.4),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "AMERICAN",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w800,
+                                fontSize: 10),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: size.width / 50,
+                      ),
+                      Container(
+                        height: size.height / 30,
+                        width: size.height / 12,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Colors.white.withOpacity(.4),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "FAST FOOD",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w800,
+                                fontSize: 10),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: size.height / 80,
+                  ),
+                  Text(
+                    restaurantModel.title,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w900,
+                      fontSize: Theme.of(context).textTheme.headline5!.fontSize,
+                      letterSpacing: 1.0,
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height / 80,
+                  ),
+                  Text(
+                    "Friends were here",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      fontSize: Theme.of(context).textTheme.caption!.fontSize,
+                      letterSpacing: 1.0,
+                    ),
+                  ),
+                  SizedBox(
+                    height: size.height / 80,
+                  ),
+                  Row(children: [
+                    friendsImage(size.height),
+                    friendsImage(size.height),
+                    friendsImage(size.height),
+                  ])
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+friendsImage(h) {
+  return Padding(
+    padding: const EdgeInsets.only(right: 8.0),
+    child: Container(
+      child: Image.asset(
+        "assets/images/friend.png",
+        scale: h / 35,
+      ),
+      height: h / 25,
+      width: h / 25,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(100),
+        color: Color(0xfff7c748),
+      ),
+    ),
+  );
 }
 
 class DropDownItem extends StatefulWidget {

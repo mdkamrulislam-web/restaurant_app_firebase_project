@@ -19,16 +19,12 @@ class _main_screenState extends State<main_screen> {
 
     return Scaffold(
       backgroundColor: Color(0xFFf7f7f7),
-      // appBar: AppBar(
-      //   title: const Text('Main Screen'),
-      //   centerTitle: true,
-      // ),
       body: SingleChildScrollView(
         physics: ScrollPhysics(),
         child: SafeArea(
           child: Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+            padding: const EdgeInsets.only(
+                left: 16.0, right: 16, bottom: 16.0, top: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -63,7 +59,6 @@ class _main_screenState extends State<main_screen> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Color(0xfff7c748),
-                        // Colors.white,
                         boxShadow: [
                           BoxShadow(
                             offset: Offset(2, 2),
@@ -100,7 +95,6 @@ class _main_screenState extends State<main_screen> {
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: TextField(
-                            // keyboardType: TextInputType.datetime,
                             decoration: InputDecoration(
                               prefixIcon: Icon(
                                 Icons.search,
@@ -148,46 +142,93 @@ class _main_screenState extends State<main_screen> {
                   ],
                 ),
                 SizedBox(height: size.height / 70),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Best Restaurants",
-                      style: TextStyle(
-                          fontSize: textTheme.headline6!.fontSize,
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: 1),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        setState(() {
-                          print("View All Button Pressed!");
-                        });
-                      },
-                      child: Text(
-                        "View all",
-                        style: TextStyle(
-                          color: Color(0xfffe7156),
-                          fontWeight: FontWeight.w700,
-                          fontSize: 16,
+                DefaultTabController(
+                  length: 3,
+                  child: Column(
+                    children: [
+                      TabBar(
+                        tabs: [
+                          Tab(
+                            text: "Breakfast",
+                          ),
+                          Tab(
+                            text: "Lunch",
+                          ),
+                          Tab(
+                            text: "Dinner",
+                          ),
+                        ],
+                        indicatorColor: Color(0xfffe7156),
+                      ),
+                      Container(
+                        height: size.height / 2,
+                        child: TabBarView(
+                          children: [
+                            Container(
+                              color: Colors.red,
+                              child: Center(
+                                child: Text("Comming Soon"),
+                              ),
+                            ),
+                            Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "Best Restaurants",
+                                      style: TextStyle(
+                                          fontSize:
+                                              textTheme.headline6!.fontSize,
+                                          fontWeight: FontWeight.w700,
+                                          letterSpacing: 1),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          print("View All Button Pressed!");
+                                        });
+                                      },
+                                      child: Text(
+                                        "View all",
+                                        style: TextStyle(
+                                          color: Color(0xfffe7156),
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: size.height / 70),
+                                Container(
+                                  height: size.height / 2.5,
+                                  child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: restaurantModels.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return RestaurantCard(
+                                          size: size,
+                                          restaurantModel:
+                                              restaurantModels[index],
+                                        );
+                                      }),
+                                ),
+                              ],
+                            ),
+                            Container(
+                              color: Colors.blue,
+                              child: Center(
+                                child: Text("Comming Soon"),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                SizedBox(height: size.height / 70),
-                Container(
-                  height: size.height / 2.5,
-                  // width: size.height / 3.75,
-                  child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: restaurantModels.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return RestaurantCard(
-                          size: size,
-                          restaurantModel: restaurantModels[index],
-                        );
-                      }),
+                    ],
+                  ),
                 ),
               ],
             ),

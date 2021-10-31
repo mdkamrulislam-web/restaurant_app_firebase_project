@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:firebase_project/screens/MainScreen.dart';
 import 'package:firebase_project/screens/SettingsScreen.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,6 +20,15 @@ class MyApp extends StatelessWidget {
         // primarySwatch: Colors.red,
         // Colors.blue,
         primaryColor: Color(0xfffe7156),
+        tabBarTheme: TabBarTheme(
+          labelColor: Color(0xfffe7156),
+          unselectedLabelColor: Colors.grey,
+          // indicator: Decoration(),
+          labelStyle: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       debugShowCheckedModeBanner: false,
       home: const MyHomePage(),

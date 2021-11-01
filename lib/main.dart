@@ -1,13 +1,20 @@
 import 'dart:ui';
-
-import 'package:firebase_project/screens/MainScreen.dart';
-import 'package:firebase_project/screens/SettingsScreen.dart';
+import 'package:firebase_project/screens/main_screen.dart';
+import 'package:firebase_project/screens/offer_screen.dart';
+import 'package:firebase_project/screens/profile_screen.dart';
+import 'package:firebase_project/screens/settings_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 void main() {
   runApp(const MyApp());
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -15,15 +22,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Restaurant Food Delivery App',
       theme: ThemeData(
-        // primarySwatch: Colors.red,
-        // Colors.blue,
-        primaryColor: Color(0xfffe7156),
-        tabBarTheme: TabBarTheme(
+        primaryColor: const Color(0xfffe7156),
+        tabBarTheme: const TabBarTheme(
           labelColor: Color(0xfffe7156),
           unselectedLabelColor: Colors.grey,
-          // indicator: Decoration(),
           labelStyle: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
@@ -55,52 +59,51 @@ class _MyHomePageState extends State<MyHomePage> {
         controller: _controller,
         screens: _buildScreens(),
         items: _navBarsItems(),
-        confineInSafeArea: true,
-        backgroundColor: Colors.white, // Default is Colors.white.
-        handleAndroidBackButtonPress: true, // Default is true.
-        resizeToAvoidBottomInset:
-            true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
-        stateManagement: true, // Default is true.
-        hideNavigationBarWhenKeyboardShows:
-            true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
-        // decoration: NavBarDecoration(
-        //   borderRadius: BorderRadius.circular(10.0),
-        //   colorBehindNavBar: Colors.white,
-        // ),
-        // popAllScreensOnTapOfSelectedTab: true,
-        popActionScreens: PopActionScreensType.all,
+        backgroundColor: Colors.white,
+        handleAndroidBackButtonPress: true,
+        hideNavigationBarWhenKeyboardShows: true,
         itemAnimationProperties: const ItemAnimationProperties(
-          // Navigation Bar's items animation properties.
           duration: Duration(milliseconds: 200),
           curve: Curves.easeInOut,
         ),
         screenTransitionAnimation: const ScreenTransitionAnimation(
-          // Screen transition animation on change of selected tab.
           animateTabTransition: true,
           curve: Curves.easeInOut,
           duration: Duration(milliseconds: 200),
         ),
-        navBarStyle:
-            NavBarStyle.style12, // Choose the nav bar style with this property.
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        navBarStyle: NavBarStyle.style14,
+      ),
     );
   }
 
   List<Widget> _buildScreens() {
-    return [const main_screen(), const SettingsScreen()];
+    return [
+      const main_screen(),
+      const OfferScreen(),
+      const ProfileScreen(),
+      const SettingsScreen(),
+    ];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.home),
-        title: ("Home"),
+        activeColorPrimary: Theme.of(context).primaryColor,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(CupertinoIcons.gift),
+        activeColorPrimary: Theme.of(context).primaryColor,
+        inactiveColorPrimary: CupertinoColors.systemGrey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(CupertinoIcons.profile_circled),
         activeColorPrimary: Theme.of(context).primaryColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(CupertinoIcons.settings),
-        title: ("Settings"),
         activeColorPrimary: Theme.of(context).primaryColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),

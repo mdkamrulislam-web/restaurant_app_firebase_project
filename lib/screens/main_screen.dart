@@ -1,8 +1,8 @@
-import 'package:firebase_project/models/datamodels/restaruntModel.dart';
+// ignore: file_names
+import 'package:firebase_project/models/datamodels/restarunt_model.dart';
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
-
+// ignore: camel_case_types
 class main_screen extends StatefulWidget {
   const main_screen({Key? key}) : super(key: key);
 
@@ -10,6 +10,7 @@ class main_screen extends StatefulWidget {
   _main_screenState createState() => _main_screenState();
 }
 
+// ignore: camel_case_types
 class _main_screenState extends State<main_screen> {
   @override
   Widget build(BuildContext context) {
@@ -18,13 +19,12 @@ class _main_screenState extends State<main_screen> {
     final textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
-      backgroundColor: Color(0xFFf7f7f7),
-      body: SingleChildScrollView(
-        physics: ScrollPhysics(),
-        child: SafeArea(
+      backgroundColor: const Color(0xFFf7f7f7),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          physics: const ScrollPhysics(),
           child: Padding(
-            padding: const EdgeInsets.only(
-                left: 16.0, right: 16, bottom: 16.0, top: 16.0),
+            padding: const EdgeInsets.only(left: 16.0, right: 16, bottom: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -32,7 +32,7 @@ class _main_screenState extends State<main_screen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      child: Icon(
+                      child: const Icon(
                         Icons.menu,
                       ),
                       height: size.height / 20,
@@ -40,7 +40,7 @@ class _main_screenState extends State<main_screen> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: Colors.white,
-                        boxShadow: [
+                        boxShadow: const [
                           BoxShadow(
                             offset: Offset(2, 2),
                             blurRadius: 2.0,
@@ -58,8 +58,8 @@ class _main_screenState extends State<main_screen> {
                       width: size.height / 20,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
-                        color: Color(0xfff7c748),
-                        boxShadow: [
+                        color: const Color(0xfff7c748),
+                        boxShadow: const [
                           BoxShadow(
                             offset: Offset(2, 2),
                             blurRadius: 2.0,
@@ -71,7 +71,7 @@ class _main_screenState extends State<main_screen> {
                   ],
                 ),
                 SizedBox(height: size.height / 100),
-                DropDownItem(),
+                const DropDownItem(),
                 SizedBox(height: size.height / 200),
                 Text(
                   "Food Delivery",
@@ -99,7 +99,7 @@ class _main_screenState extends State<main_screen> {
                               prefixIcon: Icon(
                                 Icons.search,
                                 size: size.height / 30,
-                                color: Color(0xfffe7156),
+                                color: const Color(0xfffe7156),
                               ),
                               hintText: "Find for food or restaurant..",
                               hintStyle: TextStyle(
@@ -108,7 +108,7 @@ class _main_screenState extends State<main_screen> {
                               focusedBorder: InputBorder.none,
                               enabledBorder: InputBorder.none,
                               border: InputBorder.none,
-                              contentPadding: EdgeInsets.symmetric(
+                              contentPadding: const EdgeInsets.symmetric(
                                   horizontal: 8.0, vertical: 16.0),
                             ),
                           ),
@@ -123,7 +123,7 @@ class _main_screenState extends State<main_screen> {
                         decoration: BoxDecoration(
                           color: Theme.of(context).primaryColor,
                           borderRadius: BorderRadius.circular(15),
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               offset: Offset(-1, 1),
                               blurRadius: 2.0,
@@ -131,7 +131,7 @@ class _main_screenState extends State<main_screen> {
                             ),
                           ],
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Icon(
                             Icons.tune,
                             color: Colors.white,
@@ -146,7 +146,7 @@ class _main_screenState extends State<main_screen> {
                   length: 3,
                   child: Column(
                     children: [
-                      TabBar(
+                      const TabBar(
                         tabs: [
                           Tab(
                             text: "Breakfast",
@@ -160,13 +160,13 @@ class _main_screenState extends State<main_screen> {
                         ],
                         indicatorColor: Color(0xfffe7156),
                       ),
-                      Container(
+                      SizedBox(
                         height: size.height / 2,
                         child: TabBarView(
                           children: [
                             Container(
                               color: Colors.red,
-                              child: Center(
+                              child: const Center(
                                 child: Text("Comming Soon"),
                               ),
                             ),
@@ -186,11 +186,11 @@ class _main_screenState extends State<main_screen> {
                                     ),
                                     TextButton(
                                       onPressed: () {
-                                        setState(() {
-                                          print("View All Button Pressed!");
-                                        });
+                                        setState(
+                                          () {},
+                                        );
                                       },
-                                      child: Text(
+                                      child: const Text(
                                         "View all",
                                         style: TextStyle(
                                           color: Color(0xfffe7156),
@@ -202,7 +202,7 @@ class _main_screenState extends State<main_screen> {
                                   ],
                                 ),
                                 SizedBox(height: size.height / 70),
-                                Container(
+                                SizedBox(
                                   height: size.height / 2.5,
                                   child: ListView.builder(
                                       scrollDirection: Axis.horizontal,
@@ -220,8 +220,10 @@ class _main_screenState extends State<main_screen> {
                             ),
                             Container(
                               color: Colors.blue,
-                              child: Center(
-                                child: Text("Comming Soon"),
+                              child: const Center(
+                                child: Text(
+                                  "Comming Soon",
+                                ),
                               ),
                             ),
                           ],
@@ -275,7 +277,7 @@ class RestaurantCard extends StatelessWidget {
               width: size.height / 3.75,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(24),
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                   colors: [
                     Colors.transparent,
                     Colors.transparent,
@@ -310,7 +312,7 @@ class RestaurantCard extends StatelessWidget {
                           children: [
                             Text(
                               restaurantModel.rating.toString(),
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w800,
                                   fontSize: 14),
@@ -318,12 +320,12 @@ class RestaurantCard extends StatelessWidget {
                             SizedBox(
                               width: size.width / 70,
                             ),
-                            Icon(
+                            const Icon(
                               Icons.star,
                               size: 18,
                               color: Color(0xffe3c579),
                             ),
-                            Text(
+                            const Text(
                               "(50+)",
                               style: TextStyle(
                                 fontSize: 12,
@@ -339,13 +341,13 @@ class RestaurantCard extends StatelessWidget {
                         backgroundColor: Colors.white,
                         child: Icon(
                           Icons.favorite,
-                          color: kAppthemecolor,
+                          color: const Color(0xfffe7156),
                           size: size.width / 20,
                         ),
                       )
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Row(
                     children: [
                       Container(
@@ -355,7 +357,7 @@ class RestaurantCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8),
                           color: Colors.white.withOpacity(.4),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             "AMERICAN",
                             style: TextStyle(
@@ -375,7 +377,7 @@ class RestaurantCard extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8),
                           color: Colors.white.withOpacity(.4),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             "FAST FOOD",
                             style: TextStyle(
@@ -441,13 +443,15 @@ friendsImage(h) {
       width: h / 25,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100),
-        color: Color(0xfff7c748),
+        color: const Color(0xfff7c748),
       ),
     ),
   );
 }
 
 class DropDownItem extends StatefulWidget {
+  const DropDownItem({Key? key}) : super(key: key);
+
   @override
   _DropDownItemState createState() => _DropDownItemState();
 }
@@ -459,7 +463,7 @@ class _DropDownItemState extends State<DropDownItem> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text('Deliver to'),
+        const Text('Deliver to'),
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: DropdownButton<String>(

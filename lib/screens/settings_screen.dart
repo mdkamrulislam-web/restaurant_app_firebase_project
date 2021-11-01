@@ -11,17 +11,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Setting Screen'),
-        centerTitle: true,
-      ),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        color: Colors.amber,
-        child: Center(
-          child: Text(
-            'UNDER CONSTRUCTION!',
+      body: SafeArea(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          color: Colors.amber,
+          child: const Center(
+            child: Text(
+              'UNDER CONSTRUCTION!',
+            ),
           ),
         ),
       ),

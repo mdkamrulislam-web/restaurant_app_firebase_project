@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class RestaurantModel {
   final String title, image;
   final double rating;

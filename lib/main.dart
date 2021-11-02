@@ -1,5 +1,8 @@
 import 'dart:ui';
-import 'package:firebase_project/screens/main_screen.dart';
+import 'package:firebase_project/screens/login_screen.dart';
+import 'package:firebase_project/screens/signup_screen.dart';
+import 'package:firebase_project/screens/welcome_screen.dart';
+import 'package:firebase_project/screens/home_screen.dart';
 import 'package:firebase_project/screens/offer_screen.dart';
 import 'package:firebase_project/screens/profile_screen.dart';
 import 'package:firebase_project/screens/settings_screen.dart';
@@ -35,7 +38,15 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: const MyHomePage(),
+      // home: const WelcomeScreen(),
+      initialRoute: WelcomeScreen.id,
+      routes: {
+        WelcomeScreen.id: (context) => const WelcomeScreen(),
+        LoginScreen.id: (context) => const LoginScreen(),
+        SignupScreen.id: (context) => const SignupScreen(),
+        HomeScreen.id: (context) => const HomeScreen(),
+      },
+      // const MyHomePage(),
     );
   }
 }
@@ -78,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   List<Widget> _buildScreens() {
     return [
-      const main_screen(),
+      const HomeScreen(),
       const OfferScreen(),
       const ProfileScreen(),
       const SettingsScreen(),

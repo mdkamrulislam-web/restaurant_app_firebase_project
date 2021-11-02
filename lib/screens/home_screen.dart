@@ -3,15 +3,17 @@ import 'package:firebase_project/models/datamodels/restarunt_model.dart';
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
-class main_screen extends StatefulWidget {
-  const main_screen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
+  static const String id = 'home_screen';
 
   @override
-  _main_screenState createState() => _main_screenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
 // ignore: camel_case_types
-class _main_screenState extends State<main_screen> {
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;

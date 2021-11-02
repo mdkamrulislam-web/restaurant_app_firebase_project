@@ -1,4 +1,6 @@
 import 'package:firebase_project/screens/signup_screen.dart';
+// ignore: import_of_legacy_library_into_null_safe
+// import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -14,7 +16,25 @@ class WelcomeScreen extends StatefulWidget {
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> {
+class _WelcomeScreenState extends State<WelcomeScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  @override
+  void initState() {
+    super.initState();
+
+    controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    );
+    controller.forward();
+    controller.addListener(() {
+      setState(() {});
+      // ignore: avoid_print
+      print(controller.value);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -51,9 +71,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               SizedBox(
                 height: size.height / 10,
               ),
-              const Image(
-                image: AssetImage(
-                  "assets/images/welcome_image.png",
+              // const Icon(FlatIcons.flag),
+              Hero(
+                tag: 'logo',
+                child: SizedBox(
+                  height: size.height / 3,
+                  width: size.width / 1.25,
+                  child: const Image(
+                    image: AssetImage(
+                      "assets/images/welcome_image.png",
+                    ),
+                  ),
                 ),
               ),
               SizedBox(

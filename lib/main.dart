@@ -39,7 +39,9 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       // home: const WelcomeScreen(),
-      initialRoute: WelcomeScreen.id,
+      initialRoute:
+          // HomeScreen.id,
+          WelcomeScreen.id,
       routes: {
         WelcomeScreen.id: (context) => const WelcomeScreen(),
         LoginScreen.id: (context) => const LoginScreen(),

@@ -91,9 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.only(left: 32.0, right: 32.0),
                       child: TextFormField(
                         obscureText: true,
-                        onChanged: (value) {
-                          //Do something with the user input.
-                        },
+                        onChanged: (value) {},
                         decoration: InputDecoration(
                           hintText: 'Enter your password.',
                           contentPadding: const EdgeInsets.symmetric(

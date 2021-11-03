@@ -38,17 +38,13 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      // home: const WelcomeScreen(),
-      initialRoute:
-          // HomeScreen.id,
-          WelcomeScreen.id,
+      initialRoute: WelcomeScreen.id,
       routes: {
         WelcomeScreen.id: (context) => const WelcomeScreen(),
         LoginScreen.id: (context) => const LoginScreen(),
         SignupScreen.id: (context) => const SignupScreen(),
         HomeScreen.id: (context) => const HomeScreen(),
       },
-      // const MyHomePage(),
     );
   }
 }
